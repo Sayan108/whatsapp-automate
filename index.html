@@ -15,6 +15,7 @@
         margin: 0;
         padding: 0;
       }
+
       body {
         font-family: "Inter", sans-serif;
         background-color: #f9f9f9;
@@ -22,6 +23,7 @@
         line-height: 1.6;
         scroll-behavior: smooth;
       }
+
       header {
         background-color: #25d366;
         color: white;
@@ -29,47 +31,78 @@
         text-align: center;
         animation: fadeIn 1.5s ease;
       }
+
       nav {
         background: white;
         padding: 1rem;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         display: flex;
-        justify-content: center;
-        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
         position: sticky;
         top: 0;
         z-index: 1000;
       }
-      nav a {
+
+      nav img {
+        height: 60px;
+      }
+
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #25d366;
+        cursor: pointer;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .nav-links a {
         text-decoration: none;
         color: #25d366;
         font-weight: bold;
         transition: color 0.3s;
       }
-      nav a:hover {
+
+      .nav-links a:hover {
         color: #128c7e;
       }
+
       .container {
         max-width: 1080px;
         margin: 2rem auto;
         padding: 0 1rem;
       }
+
       .section {
         margin-bottom: 4rem;
       }
+
       .section-content {
         display: flex;
         gap: 2rem;
         align-items: center;
         animation: fadeInSection 0.8s ease both;
       }
+
       .section-text {
         flex: 1;
         animation: slideInLeft 1s ease both;
       }
+
       .section-text p {
         margin-bottom: 1rem;
       }
+
       .section-image {
         flex: 1;
         height: 300px;
@@ -79,22 +112,27 @@
         object-fit: cover;
         width: 100%;
       }
+
       .section h2 {
         color: #25d366;
         margin-bottom: 1rem;
       }
+
       ul {
         list-style: none;
         padding-left: 0;
       }
+
       ul li::before {
         content: "✔️ ";
       }
+
       .plans {
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
       }
+
       .plan {
         background: white;
         border: 1px solid #ddd;
@@ -104,20 +142,25 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease;
       }
+
       .plan:hover {
         transform: translateY(-5px);
       }
+
       .plan h3 {
         margin-bottom: 0.5rem;
         color: #111;
       }
+
       .plan p {
         font-size: 0.95rem;
       }
+
       .cta {
         text-align: center;
         margin-top: 2rem;
       }
+
       .cta a {
         background-color: #25d366;
         color: white;
@@ -128,9 +171,11 @@
         display: inline-block;
         transition: background 0.3s;
       }
+
       .cta a:hover {
         background-color: #128c7e;
       }
+
       footer {
         background: #222;
         color: #ccc;
@@ -139,12 +184,14 @@
         margin-top: 2rem;
         font-size: 0.9rem;
       }
+
       form {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         margin-top: 1rem;
       }
+
       form input {
         padding: 0.75rem;
         border: 1px solid #ccc;
@@ -152,6 +199,7 @@
         font-family: inherit;
         font-size: 1rem;
       }
+
       form button {
         background-color: #25d366;
         color: white;
@@ -162,6 +210,7 @@
         cursor: pointer;
         transition: background 0.3s;
       }
+
       form button:hover {
         background-color: #128c7e;
       }
@@ -190,6 +239,7 @@
           opacity: 1;
         }
       }
+
       @keyframes slideInLeft {
         from {
           opacity: 0;
@@ -200,6 +250,7 @@
           transform: translateX(0);
         }
       }
+
       @keyframes slideInRight {
         from {
           opacity: 0;
@@ -214,10 +265,37 @@
       @media (max-width: 768px) {
         .section-content {
           flex-direction: column;
+          text-align: center;
         }
-        nav {
-          flex-wrap: wrap;
-          justify-content: center;
+
+        .section-image {
+          height: auto;
+          max-height: 250px;
+        }
+
+        .plans {
+          flex-direction: column;
+        }
+
+        form input,
+        form button {
+          width: 100%;
+          font-size: 1rem;
+        }
+
+        .nav-links {
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          margin-top: 1rem;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: block;
         }
       }
     </style>
@@ -229,124 +307,115 @@
     </header>
 
     <nav>
-        <img src="asset/logo.png" alt="Logo" style="height: 60px; width: auto; margin-right: 1rem;" />
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#services">Services</a>
-      <a href="#plans">Plans</a>
-      <a href="#create-store">Create Store</a>
-      <a href="#contact">Contact</a>
+      <img src="asset/logo.png" alt="Logo" />
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#plans">Plans</a>
+        <a href="#create-store">Create Store</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
 
     <div class="container">
-      <div class="section">
+      <!-- Home -->
+      <div class="section" id="home">
+        <img
+          class="section-image"
+          src="asset/home.png"
+          alt="WhatsApp Store Demo"
+        />
         <div class="section-content">
           <div class="section-text">
             <h2>Welcome to Your WhatsApp Store Helper</h2>
             <p>
-              We specialize in helping small businesses, local sellers, and
-              artisans create fully functional digital stores right inside
-              WhatsApp. No apps or websites required.
-                    </p>
-                    <p>
-                      With our easy setup, your products can be browsed, questions
-                      answered instantly, and payments completed — all from a mobile
-                      phone.
-                    </p>
-                  </div>
-                  <img
-                    class="section-image"
-                    src="asset/home.png"
-                    alt="WhatsApp Store Demo"
-                  />
-                </div>
-              </section>
-        
-              <section id="about" class="section">
-                <div class="section-content">
-                  <img
-                    class="section-image"
-                    src="asset/aboutus.png"
-                    alt="Team helping local business"
-                  />
-                  <div class="section-text">
-                    <h2>About Us</h2>
-                    <p>
-                      We're a dedicated team of digital enablers focused on bridging the
-                      technology gap for small vendors. Based in India, our mission is
-                      to make e-commerce effortless and affordable.
-                    </p>
-                    <p>
-                      Whether you're selling sarees, homemade snacks, or local crafts —
-                      we'll help you set up a professional presence on WhatsApp and
-                      start selling in under a day.
-                    </p>
-                  </div>
-                </div>
-              </section>
-        
-              <section id="services" class="section">
-                <div class="section-content">
-                  <div class="section-text">
-                    <h2>Our Services</h2>
-                    <ul>
-                      <li> WhatsApp Business Profile Setup</li>
-                      <li> Product Catalog Creation & Management</li>
-                      <li> Auto Replies + UPI Payment Link Integration</li>
-                      <li> Basic Product Photography Support</li>
-                      <li> Monthly Updates and Maintenance</li>
-                    </ul>
-                  </div>
-                  <img
-                    class="section-image"
-                    src="asset/services.png"
-                    alt="Service Overview"
-                  />
-                </div>
-              </section>
-        
-              <section id="plans" class="section">
-                <h2>Our Plans</h2>
-                <div class="plans">
-                  <div class="plan">
-                    <h3>Starter Plan – ₹299</h3>
-                    <p>
-                      ✔️ Business Profile Setup<br />
-                      ✔️ 5 Products in Catalog<br />
-                      ✔️ One-time Guidance Call
-                    </p>
-                  </div>
-                  <div class="plan">
-                    <h3>Standard Plan – ₹499</h3>
-                    <p>
-                      ✔️ 15 Product Listings<br />
-                      ✔️ Auto Response Setup<br />
-                      ✔️ UPI/Payment Link Integration
-                    </p>
-                  </div>
-                  <div class="plan">
-                    <h3>Premium Plan – ₹999</h3>
-                    <p>
-                      ✔️ 25+ Product Listings<br />
-                      ✔️ Catalog Design Assistance<br />
-                      ✔️ Product Photography Help<br />
-                      ✔️ One Month Support + Updates
-                    </p>
-                  </div>
-                </div>
-              </section>
-        
-         
-        
-      <!-- Create Store Section -->
+              We help small businesses, local sellers, and artisans create fully
+              functional digital stores right inside WhatsApp — no apps or
+              websites needed.
+            </p>
+            <p>From product catalogs to payment links, we set everything up!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="section-content">
+          <img
+            class="section-image"
+            src="asset/aboutus.png"
+            alt="Team helping local business"
+          />
+          <div class="section-text">
+            <h2>About Us</h2>
+            <p>
+              We're a dedicated team of digital enablers focused on empowering
+              local vendors and businesses with WhatsApp commerce tools.
+            </p>
+            <p>
+              Based in India, our aim is to make online selling as easy as
+              sending a message.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services" class="section">
+        <div class="section-content">
+          <img
+            class="section-image"
+            src="asset/services.png"
+            alt="Service Overview"
+          />
+          <div class="section-text">
+            <h2>Our Services</h2>
+            <ul>
+              <li>WhatsApp Business Profile Setup</li>
+              <li>Product Catalog Creation & Management</li>
+              <li>Auto Replies + UPI Payment Link Integration</li>
+              <li>Basic Product Photography Support</li>
+              <li>Monthly Updates and Maintenance</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Plans -->
+      <section id="plans" class="section">
+        <h2>Our Plans</h2>
+        <div class="plans">
+          <div class="plan">
+            <h3>Starter Plan – ₹299</h3>
+            <p>✔️ Profile Setup<br />✔️ 5 Products<br />✔️ Guidance Call</p>
+          </div>
+          <div class="plan">
+            <h3>Standard Plan – ₹499</h3>
+            <p>✔️ 15 Products<br />✔️ Auto Response<br />✔️ UPI Integration</p>
+          </div>
+          <div class="plan">
+            <h3>Premium Plan – ₹999</h3>
+            <p>
+              ✔️ 25+ Products<br />✔️ Catalog Design<br />✔️ Photo Support<br />✔️
+              1-Month Updates
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Create Store -->
       <section id="create-store" class="section">
         <div class="section-content">
+          <img
+            class="section-image"
+            src="asset/createstore.png"
+            alt="Create Store Illustration"
+          />
           <div class="section-text">
             <h2>Create Your WhatsApp Store</h2>
-            <p>
-              Fill out the details below and we’ll help you set up your store
-              within 24 hours.
-            </p>
+            <p>Submit your details, and we’ll set up your store in 24 hours!</p>
             <form
               id="storeForm"
               action="https://formspree.io/f/mzzgvdlj"
@@ -380,15 +449,10 @@
               <button type="submit">Submit Request</button>
             </form>
           </div>
-          <img
-            class="section-image"
-            src="asset/createstore.png"
-            alt="Create Store Illustration"
-          />
         </div>
       </section>
 
-      <!-- Contact Section -->
+      <!-- Contact -->
       <section id="contact" class="section">
         <h2>Contact Us</h2>
         <p>
@@ -404,9 +468,8 @@
         <p><strong>Ready to start your WhatsApp store?</strong></p>
         <a
           href="https://wa.me/917679039012?text=I%20want%20to%20set%20up%20my%20WhatsApp%20store"
+          >Message Us on WhatsApp</a
         >
-          Message Us on WhatsApp
-        </a>
       </div>
     </div>
 
@@ -417,12 +480,33 @@
     <div class="toast" id="toast"></div>
 
     <script>
+      function toggleMenu() {
+        const navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("active");
+      }
+
+      // Close the menu when any nav link is clicked (on mobile)
+      document.addEventListener("DOMContentLoaded", () => {
+        const navLinksContainer = document.getElementById("navLinks");
+        const navLinks = navLinksContainer.querySelectorAll("a");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            if (
+              window.innerWidth <= 768 &&
+              navLinksContainer.classList.contains("active")
+            ) {
+              navLinksContainer.classList.remove("active");
+            }
+          });
+        });
+      });
+
       const form = document.getElementById("storeForm");
       const toast = document.getElementById("toast");
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-
         const email = form.email.value;
         const phone = form.phone.value;
 
